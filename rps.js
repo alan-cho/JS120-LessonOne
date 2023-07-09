@@ -23,7 +23,7 @@ function createPlayer(playerType) {
 
         this.move = choice;
       } else {
-        let randomIndex = Math.floor(Math.random * choices.length);
+        let randomIndex = Math.floor(Math.random() * choices.length);
         this.move = choices[randomIndex];
       }
     },
@@ -71,7 +71,7 @@ const RPSGame = {
   },
 
   playAgain() {
-    let answer = readline.question("Would you like to play again (y or n)?");
+    let answer = readline.question("Would you like to play again (y or n)? ");
     return answer.toLowerCase()[0] === "y";
   },
 

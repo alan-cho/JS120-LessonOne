@@ -1,10 +1,35 @@
-function createPlayer() {
+const readline = require("readline-sync");
+
+function createPlayer(playerType) {
   return {
-    // possible state: player name?
-    // possible state: player's current move?
+    playerType: playerType,
+    move: null,
 
     choose() {
-      // not yet implemented
+      const choices = ["rock", "paper", "scissors"];
+      if (this.isHuman()) {
+        let choice;
+
+        while (true) {
+          console.log("Choose rock, paper, or scissors: ");
+          choice = readline.question();
+
+          if (choices.includes(choice)) {
+            break;
+          }
+
+          console.log("Please enter a valid move.");
+        }
+
+        this.move = choice;
+      } else {
+        let randomIndex = Math.floor(Math.random * choices.length);
+        this.move = choices[randomIndex];
+      }
+    },
+
+    isHuman() {
+      return this.playerType === "human";
     },
   };
 }
@@ -28,8 +53,8 @@ let compare = function (move1, move2) {
 };
 
 const RPSGame = {
-  human: createPlayer(),
-  computer: createPlayer(),
+  human: createPlayer("human"),
+  computer: createPlayer("computer"),
 
   displayWelcomeMessage() {
     console.log("Welcome to Rock, Paper, Scissors!");

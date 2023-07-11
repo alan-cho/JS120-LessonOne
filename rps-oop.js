@@ -1,3 +1,5 @@
+const readline = require("readline-sync");
+
 function Player() {
   this.move = null;
 }
